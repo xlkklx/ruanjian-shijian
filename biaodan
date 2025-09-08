@@ -1,1 +1,96 @@
-
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 新 Bootstrap5 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+		<script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+		<style>
+					
+			#logDiv{
+				width: 600px;
+				margin: 0 auto;
+				background-color: white;
+				margin-top: 50px;
+			}
+			#button{
+				background-color: aqua;
+						
+				border-radius: 5px;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="logDiv">
+			<h2 class="text-center">学生注册表单</h2>
+			<form onsubmit="return form_validate()">
+			<label  for="username">姓名</label>
+			<input class="form-control" id="username" name="username" placeholder="请输入您的姓名" required/>
+			<br>
+			<label for="phonenumber">电话号</label>
+			<input class="form-control" id="phonenumber" name="phonenumber" type="number" placeholder="请输入11位手机号" required/>
+			<br>
+			<label for="email">邮箱</label>
+			<input class="form-control" id="email" name="email" type="email" placeholder="可选"/>
+			<br>
+			<label for="password">密码</label>
+			<input class="form-control" id="password" name="password" type="password" placeholder="至少六位，包括字母和数字" min="6" required/>
+			<br>
+			<label for="apword">确认密码</label>
+			<input class="form-control" id="apword" name="apword" type="password" placeholder=" 请再次输入密码" required/>
+			<br><br>
+			<input class="form-control" type="submit" value="注册" id="button"/>
+			</form>
+		</div>
+	</body>
+	<script>
+		function form_validate(){
+			let username=document.getElementById("username");
+			reg=/^[A-Za-z0-9\u4e00-\u9fa5]{3,8}$/;
+			if(reg.test(username.value)){
+				//return true 无需处理
+			}else{
+				alert("用户名格式不正确:大小写字母+数字+下划线共4，8位");
+				return false;
+			}
+			let phonenumber=document.getElementById("phonenumber")
+			reg=/^[0-9]{11}$/;
+			if(reg.test(phonenumber.value)){
+				
+			}else{
+				alert("手机号为11号数字");
+				return false;
+			}
+			let email=document.getElementById("email")
+			reg=/^[A-Za-z0-9_]+@[A-Za-z0-9]+.(com|cn|gov\.cn|org)$/;
+			if(email.value){
+				if(reg.test(email.value)){
+				//return true;
+				}else{
+				alert("Eamil格式不正确");
+				return false;
+				}
+			}
+			let password=document.getElementById("password")
+			reg = /^[A-Za-z0-9].{5,}$/;
+						if(reg.test(password.value)){
+							//alert("正确");
+						}else{
+							alert("至少六位，包括字母和数字")
+							return false
+						}
+			let apword=document.getElementById("apword")
+			reg = /^[A-Za-z0-9].{6,}$/;
+						if(reg.test(apword.value)){
+							//alert("正确");
+						}else{
+							alert("密码不一样")
+							return false
+						}
+		}
+	</script>
+</html>
